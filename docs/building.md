@@ -21,6 +21,10 @@ After changing the processor's states, run
 `rtl/ivory/ivory_cpu_state_enum.svh` (the simulations' makefiles run it;
 Quartus doesn't).
 
+`sys/` is MiSTer's framework as it is in
+[Template_MiSTer](https://github.com/MiSTer-devel/Template_MiSTer), at
+its commit d6324f2 (Nov 20 2026); nothing in it is changed here.
+
 **The design fills about 84% of the FPGA, so some fitter seeds don't fit or
 miss timing**: change `SEED` in `XL1200.qsf` and build again. The seed
 there is the release's, which was compiled with Quartus for Windows; the
