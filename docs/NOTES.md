@@ -1968,8 +1968,8 @@ puts Genera on the LAN at its own address ([WiFi](#wifi), below).
   no telnet server (`sys.sct` defines the login protocols for the
   client only), the UDP TIME port doesn't answer.  Seeds of the same
   code: 1 ran past the hour twice, 2 routed twice (0.032 and 0.434 ns),
-  4 and 5 (the Mac's CrossOver Quartus, the same 17.0.2 build 602,
-  `build-mac.sh`) gave up on congestion in three minutes at 73-74%
+  4 and 5 (the Mac's CrossOver Quartus, the same 17.0.2 build 602)
+  gave up on congestion in three minutes at 73-74%
   peak, the design's margin being what it is.  The site setup and Save
   World on the network disk (44,564 blocks in six minutes again) gave
   the network master image; cold-booted from the FEP with Hello and
@@ -2562,8 +2562,8 @@ the ALU's rotate) against the shared rotate unit, roughly 400 ALMs.
   hour before 4 came in, five running at once by then (four on Ubuntu,
   one on the Mac) with the limit raised to an hour and a half. The same
   seed 4 in Docker could not route (Quartus for Windows on the Mac and for
-  Linux in the image give different results for one seed), so `build.sh`
-  doesn't reproduce this release from the seed in `XL1200.qsf`. By
+  Linux in the image give different results for one seed), so a build
+  there doesn't reproduce this release from the seed in `XL1200.qsf`. By
   synthesis the design is 68,565 logic cells against build 48's 68,536.
   On the MiSTer: the Halt Machine section's test.
 - A DDR3 burst cut short (e.g. by resetting the machine when a file download

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# The MiSTer's FPGA over a USB-Blaster on its JTAG header. Quartus runs in the
-# same Docker image as build.sh, as root with the USB bus passed through, on the
+# The MiSTer's FPGA over a USB-Blaster on its JTAG header. Quartus runs in a
+# Docker image (QUARTUS_IMAGE), as root with the USB bus passed through, on the
 # Linux machine the Blaster is plugged into: JTAG_HOST over ssh (unset: here).
 # MISTER is the MiSTer's ssh login (default root@mister).
 #   tools/mister/jtag.sh chain      list the JTAG chain (HPS, then the FPGA)

@@ -60,5 +60,4 @@ research/downloads/
 *.nvram
 sim/system/screen.pgm
 sim/system/color_test.ppm
-build-mac/
 lint/gen/

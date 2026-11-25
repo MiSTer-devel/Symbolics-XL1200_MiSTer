@@ -6,25 +6,26 @@
   `tools/world.py`, `tools/worldfile.py` and `tools/errortable.py`)
 - [Verilator](https://verilator.org) 5.020 or newer, for the lint and the
   simulations
-- For the core, Quartus Prime Lite 17.0.2, MiSTer's version: Docker with the
-  `theypsilon/quartus-lite-c5:17.0.2.docker0` image (`build.sh`), or Quartus
-  for Windows in a CrossOver bottle on a Mac (`build-mac.sh`)
+- For the core, Quartus Prime Lite 17.0.2, MiSTer's version
 - For `MiSTer_xl1200`, the
   [Arm GNU 10.2 toolchain](https://developer.arm.com/downloads/-/gnu-a)
   (`gcc-arm-10.2-2020.11-x86_64-arm-none-linux-gnueabihf`)
 
 ## The core
 
-1. `./build.sh` compiles in Docker here; `BUILD_HOST=HOST ./build.sh`
-   copies the tree to `HOST` over ssh, compiles there and fetches the
-   results.
+1. Compile the `XL1200` project with Quartus.
 2. The core is `output_files/XL1200.rbf`.
+
+After changing the processor's states, run
+`python3 tools/gen_ivory_states.py` first: it writes their enum,
+`rtl/ivory/ivory_cpu_state_enum.svh` (the simulations' makefiles run it;
+Quartus doesn't).
 
 **The design fills about 84% of the FPGA, so some fitter seeds don't fit or
 miss timing**: change `SEED` in `XL1200.qsf` and build again. The seed
-there is the release's, which was compiled with `build-mac.sh`; the same
-seed gives another result in Docker (seed 4 doesn't route there), so with
-`build.sh` expect to try a few.
+there is the release's, which was compiled with Quartus for Windows; the
+same seed gives another result with Quartus for Linux (seed 4 doesn't
+route there), so expect to try a few.
 
 ## Tests
 
@@ -79,5 +80,6 @@ gitignored `research/media/` is the place for them:
 
 `tools/mister/run.sh` copies and starts a core, takes screenshots and types
 on it (`kbd.py`); `tools/mister/jtag.sh` loads a `.sof` over JTAG. They reach
-the MiSTer as `MISTER` (default `root@mister`); `jtag.sh` runs Quartus on
-`JTAG_HOST`, the Linux machine with the USB-Blaster, or here.
+the MiSTer as `MISTER` (default `root@mister`); `jtag.sh` runs Quartus in
+Docker (`QUARTUS_IMAGE`) on `JTAG_HOST`, the Linux machine with the
+USB-Blaster, or here.
