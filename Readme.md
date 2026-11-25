@@ -3,8 +3,25 @@
 **This core was created with AI**
 
 This core is a Symbolics XL1200 Lisp machine. It boots from a SCSI disk
-image and runs Genera 8.3 on the 1152 × 880 black-and-white console, with
-keyboard, mouse, Ethernet and a CD-ROM drive.
+image and runs Genera 8.3.
+
+## Features
+
+- A prebuilt disk with Genera 8.3 and its applications (Zmacs, Document
+  Examiner, CLIM, Joshua, Statice, TeX, CL-HTTP and more) and the Genera
+  8.1.1 animation world (S-Paint, S-Geometry, S-Dynamics)
+- The Ivory processor with its floating-point accelerator and 16 megawords
+  (80 MB) of memory, the most an XL1200 took
+- The 1152 × 880 black-and-white console, over HDMI or direct video
+- A color screen: the Univision UDC-3400 board's 8-bit color, shown in
+  place of the console with Pause/Break
+- The Symbolics keyboard's keys on a PC keyboard, and the three-button
+  mouse
+- SCSI disks and a CD-ROM drive from image files; Genera writes to its disk
+  and saves worlds on it
+- Ethernet through the MiSTer, by cable or WiFi: ping, FTP, telnet and the
+  CL-HTTP web server
+- The calendar clock, set from the MiSTer's
 
 ## What you need
 
