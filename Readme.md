@@ -7,8 +7,6 @@ boards and the floating-point accelerator. It boots the XL1200's front-end
 processor (FEP) from a SCSI disk image and runs Genera 8.3 on the 1152 × 880
 black-and-white console, with keyboard, mouse, Ethernet and a CD-ROM drive.
 
-Work in progress: [docs/TODO.md](docs/TODO.md).
-
 ## What you need
 
 - The core and the main program from [releases](releases/)
