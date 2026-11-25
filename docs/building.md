@@ -71,7 +71,7 @@ gitignored `research/media/` is the place for them:
   FLODs): the emulator, `sim/ivory`, `sim/system`, `tools/fepfs.py mkworld`;
   `emu/xlemu` looks for `research/media/disks/fepfs-lmfs-kernel.dd` without `-d`
 - A Genera 8.3 world, `GENERA_8_3.ILOD` from the Genera 8.3 CD, to build a
-  disk ([Building a disk](../Readme.md#building-a-disk))
+  disk ([Building a disk](disk.md))
 - For the reference VLM ([tools/world](../tools/world/README.md)),
   `Genera-8-5.vlod` and `VLM_debugger` from Open Genera 2.0
 
