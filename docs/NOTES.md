@@ -788,8 +788,9 @@ seconds to the chip's BCD registers itself (`xl_nvram.sv`: one subtraction
 a cycle, 21,000 cycles for a date in the 2020s; the 28 years back are
 10,227 days, 1461 weeks exactly, so the weekday keeps; `sim/nvram` checks it
 against `gmtime`). Main sends a core its RTC and timestamp once, when it
-loads (`send_rtc(3)` in `user_io.cpp`; Minimig and the NeXT get theirs again
-every minute), so a core loaded just after the MiSTer started, before its
+loads (`user_io_send_rtc(3)` in `user_io.cpp`; Minimig and the NeXT get
+theirs again every minute), so a core loaded just after the MiSTer started,
+before its
 clock was set from the network, had a wrong time and Genera asked for the
 date: `MiSTer_xl1200` sends the XL1200's timestamp every minute too, and
 the core takes each one until Genera sets the clock itself (the W bit
@@ -1917,8 +1918,11 @@ puts Genera on the LAN at its own address ([WiFi](#wifi), below).
   self-contained apart from the A2065 module's host network calls; the OSD
   option at status bits 10:8, macvlan child "xl0"; a failed open waits for
   the option or the MAC to change, and RX takes at most a ring's worth per
-  poll) and the three
-  user_io hooks, for a pull request to MiSTer-devel/Main_MiSTer; also the
+  poll; `is_xl1200()` there makes its poll Main's `core_poll`, which
+  also sends the timestamp every minute) and the `user_io.cpp` lines
+  beside the other bridges' (the UTC clock, stop, identify, start): one
+  commit on Main's master, for a pull request to
+  MiSTer-devel/Main_MiSTer; also the
   `xl1200` branch of github.com/jakesjews/Main_MiSTer.  Built with the Arm
   GNU 10.2 toolchain (gcc-arm-10.2-2020.11, arm-none-linux-gnueabihf), the
   one MiSTer's own builds use (docs/building.md).
@@ -1979,6 +1983,13 @@ puts Genera on the LAN at its own address ([WiFi](#wifi), below).
   reloading rebooted the board once; from the menu the switch is clean.)
   The section also carries direct_video 0 while the core is tested from
   the Mac.
+- Nov 24 2026: Main's master had moved its cores' identification and
+  polling into the support code (a `core_poll` pointer each `is_...()`
+  sets), so the commit was made again on it (Main of Nov 23, ac2e102):
+  `user_io.cpp` keeps four lines and the comment.  On the MiSTer (build
+  49, tap0 over WiFi, a scratch copy of the disk): the core starts under
+  it by `main=`, Genera answers ping within 43 s of Boot, and its status line
+  agrees with the Mac's clock to the second.
 
 ### WiFi
 
