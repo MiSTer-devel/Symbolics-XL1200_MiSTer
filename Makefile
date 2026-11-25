@@ -5,8 +5,13 @@
 #   make test
 VERILATOR ?= verilator
 
+# Diagnostics newer Verilators added (lint/exclusions.vlt), turned off where
+# the installed one has them.
+LINT_NEWER := PROCASSINIT SIMILARNAME
+LINT_OFF = $(foreach w,$(LINT_NEWER),$(shell $(VERILATOR) --lint-only -Wno-$(w) lint/pll.sv 2>&1 | grep -q 'Unknown warning' || echo -Wno-$(w)))
+
 lint: lint-prepare
-	$(VERILATOR) --lint-only -Wall -Wno-UNOPTFLAT --timescale-override 1ns/1ps --top-module emu -f lint/rtl.f
+	$(VERILATOR) --lint-only -Wall -Wno-UNOPTFLAT $(LINT_OFF) --timescale-override 1ns/1ps --top-module emu -f lint/rtl.f
 
 lint-prepare:
 	@mkdir -p lint/gen

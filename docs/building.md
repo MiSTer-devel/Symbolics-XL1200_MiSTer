@@ -2,8 +2,10 @@
 
 ## What you need
 
-- Python 3, make and a C++17 compiler
-- [Verilator](https://verilator.org) 5, for the lint and the simulations
+- Python 3, make and a C++17 compiler (NumPy too for the world-file readers,
+  `tools/world.py`, `tools/worldfile.py` and `tools/errortable.py`)
+- [Verilator](https://verilator.org) 5.020 or newer, for the lint and the
+  simulations
 - For the core, Quartus Prime Lite 17.0.2, MiSTer's version: Docker with the
   `theypsilon/quartus-lite-c5:17.0.2.docker0` image (`build.sh`), or Quartus
   for Windows in a CrossOver bottle on a Mac (`build-mac.sh`)
@@ -38,6 +40,8 @@ seed gives another result in Docker (seed 4 doesn't route there), so with
   running clock, against the host's `gmtime` (`sim/nvram`)
 - the SCSI chip with its disks and CD-ROM drive, driven as Genera drives
   it, on generated images (`sim/scsi`)
+
+The path to the clone can't have a space in it.
 
 The rest need an XL1200 FEP disk image:
 

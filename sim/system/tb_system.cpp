@@ -364,10 +364,10 @@ int main(int argc, char** argv) {
       printf("MISMATCH at step %llu (icount %llu), instruction at %08x.%d:\n%s", (unsigned long long)n,
              (unsigned long long)ref.icount, (uint32_t)(pc0 >> 1), (int)(pc0 & 1), bad.c_str());
       printf("  ref interrupts %08x mask %08x hp %d lp %d cycles %llu; rtl pending %08x mask %08x "
-             "hp %d lp %d ticks %u pit_out %x\n",
+             "hp %d lp %d ticks %llu pit_out %x\n",
              rbus.interrupts_pending(), rbus.interrupt_mask, rbus.hp_sb, rbus.lp_sb,
              (unsigned long long)rbus.cycles, M(int_pending), M(int_mask), M(hp_sb), M(lp_sb),
-             M(ticks), M(pit_out));
+             (unsigned long long)M(ticks), M(pit_out));
       ModelState::print_pit(rbus.pit);
       for (int k = 0; k < 3; k++)
         printf("  rtl pit %d: mode %d reload %u value %u pending %d counting %d out %d msb_next %d\n", k,

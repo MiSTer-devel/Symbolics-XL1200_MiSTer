@@ -66,9 +66,9 @@ module ivory_cpu
   input  logic        map_reload,
 
   output logic        cop_req,
-  output logic        cop_we,
-  output logic        cop_wait,       // a read that waits for a result in progress (FPA instructions)
-  output logic [9:0]  cop_reg,
+  output logic        cop_we    /*verilator public_flat_rd*/,
+  output logic        cop_wait  /*verilator public_flat_rd*/,   // a read that waits for a result in progress (FPA instructions)
+  output logic [9:0]  cop_reg   /*verilator public_flat_rd*/,
   output word_t       cop_wdata,
   input  logic        cop_ack,
   input  word_t       cop_rdata,

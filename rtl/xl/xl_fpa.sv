@@ -24,8 +24,8 @@ module xl_fpa (
   input  logic        hold,      // a read that waits for the operation in progress
   input  logic [8:0]  addr,
   input  logic [31:0] wdata,
-  output logic        ack,
-  output ivory_pkg::word_t rdata
+  output logic        ack    /*verilator public_flat_rd*/,
+  output ivory_pkg::word_t rdata /*verilator public_flat_rd*/
 );
   import ivory_pkg::*;
   import xl_fpa_pkg::*;

@@ -228,7 +228,7 @@ private:
   W trap_vector_entry(int vector);
   void enter_trap_frame(int vector, uint32_t old_fp, W handler, uint64_t continuation_pc);
   void check_stack_overflow();
-  void halt(const std::string& why);
+  [[noreturn]] void halt(const std::string& why);
   int error_microstate(int cond);
   int rev5_microstate(int cond);
   int err_detail = -1;       // data type or memory cycle refining the next error trap

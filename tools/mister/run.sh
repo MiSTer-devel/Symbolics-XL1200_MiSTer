@@ -29,7 +29,7 @@ case "$1" in
     scp -q "$2" "$mister:/media/fat/_Computer/$name"
     # a core copied while Quartus was still writing it won't configure, and
     # MiSTer quits (no picture); only load an exact copy
-    want=$(md5 -q "$2")
+    if command -v md5sum > /dev/null; then want=$(md5sum "$2" | cut -d' ' -f1); else want=$(md5 -q "$2"); fi
     got=$(ssh "$mister" "sync; md5sum /media/fat/_Computer/$name" | cut -d' ' -f1)
     if [ "$want" != "$got" ]; then echo "copy differs from $2; not loading" >&2; exit 1; fi
     cmd "load_core /media/fat/_Computer/$name"
