@@ -2566,6 +2566,22 @@ the ALU's rotate) against the shared rotate unit, roughly 400 ALMs.
   there doesn't reproduce this release from the seed in `XL1200.qsf`. By
   synthesis the design is 68,565 logic cells against build 48's 68,536.
   On the MiSTer: the Halt Machine section's test.
+- Build 50 (Nov 24 2026, `releases/XL1200_20261125.rbf`, the core's own
+  date being UTC's; replacing build 49): MiSTer's framework at
+  Template_MiSTer d6324f2 (hps_io's analog trigger outputs and a fix to
+  screen_rotate's buffering, neither connected here; 656c8c3), nothing
+  else in the core. Seed 11 of 656c8c3 (Ubuntu, 45 minutes, 20 of them
+  routing): 35,118 ALMs (84%), block memory 56%, setup slack +0.936 ns
+  core, +1.284 video, +0.232 HDMI, +0.709 HPS, hold +0.192. Seeds 7 and
+  10 were stopped when it came in, 12 earlier to leave the server three
+  builds. By synthesis the design is build 49's size: the same registers,
+  memory bits and DSP blocks, 52,518 ALUTs against 52,512 (the release
+  before was synthesized by Quartus for Windows). The seed in
+  `XL1200.qsf` is Quartus for Linux's now. On the MiSTer (a scratch copy
+  of the prebuilt disk, tap0 over WiFi): the FEP's prompt, Hello and
+  Boot, ping 40 s after Boot, the status line's time agreeing with the
+  Mac's clock to the second, Login, `Halt Machine` to the FEP's prompt,
+  `Continue`, and `(+ 1 2)` at the Listener.
 - A DDR3 burst cut short (e.g. by resetting the machine when a file download
   starts) wedges the HPS SDRAM port: DDRAM_BUSY stays high and Main_MiSTer
   hangs on ioctl_wait (once the whole board reset). Put MiSTer's

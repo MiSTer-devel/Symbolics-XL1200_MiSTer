@@ -27,9 +27,10 @@ its commit d6324f2 (Nov 20 2026); nothing in it is changed here.
 
 **The design fills about 84% of the FPGA, so some fitter seeds don't fit or
 miss timing**: change `SEED` in `XL1200.qsf` and build again. The seed
-there is the release's, which was compiled with Quartus for Windows; the
-same seed gives another result with Quartus for Linux (seed 4 doesn't
-route there), so expect to try a few.
+there is the release's, which was compiled with Quartus for Linux (the
+`theypsilon/quartus-lite-c5:17.0.2.docker0` Docker image); Quartus for
+Windows gives another result for the same seed, so expect to try a few
+there.
 
 ## Tests
 
