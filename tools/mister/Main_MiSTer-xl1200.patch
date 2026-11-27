@@ -1,4 +1,4 @@
-From a1ceec28d400d0100ac93f59bb88a7fbac6ce252 Mon Sep 17 00:00:00 2001
+From ca569b7d9159536401f8c4b4e629b3fc2cccd10a Mon Sep 17 00:00:00 2001
 From: Jacob Jewell <jakesjews@gmail.com>
 Date: Wed, 4 Nov 2026 00:06:31 -0500
 Subject: [PATCH] XL1200: Ethernet bridge (the 82586 in the FPGA, Main as the
@@ -18,10 +18,10 @@ Co-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>
 Claude-Session: https://claude.ai/code/session_01Sv9GAGSmR6F1TyPJDTnioY
 ---
  support.h                 |   1 +
- support/xl1200/xl1200.cpp | 238 ++++++++++++++++++++++++++++++++++++++
+ support/xl1200/xl1200.cpp | 233 ++++++++++++++++++++++++++++++++++++++
  support/xl1200/xl1200.h   |   9 ++
  user_io.cpp               |   8 +-
- 4 files changed, 254 insertions(+), 2 deletions(-)
+ 4 files changed, 249 insertions(+), 2 deletions(-)
  create mode 100644 support/xl1200/xl1200.cpp
  create mode 100644 support/xl1200/xl1200.h
 
@@ -39,10 +39,10 @@ index ac02f64..edab25b 100644
  #include "support/archie/archie.h"
 diff --git a/support/xl1200/xl1200.cpp b/support/xl1200/xl1200.cpp
 new file mode 100644
-index 0000000..5ff35d6
+index 0000000..24fa81e
 --- /dev/null
 +++ b/support/xl1200/xl1200.cpp
-@@ -0,0 +1,238 @@
+@@ -0,0 +1,233 @@
 +#include <stdio.h>
 +#include <string.h>
 +#include <strings.h>
@@ -192,11 +192,6 @@ index 0000000..5ff35d6
 +
 +void xl1200_enet_poll()
 +{
-+	// The calendar clock starts from the timestamp, which Genera reads as
-+	// GMT when it boots, a while after the core loads: send it every
-+	// minute, so a core loaded before the clock was set from the network
-+	// gets the time once it is.  The core stops taking it once Genera sets
-+	// the clock itself.
 +	static unsigned long rtc_timer = 0;
 +	if (!rtc_timer || CheckTimer(rtc_timer))
 +	{
@@ -297,7 +292,7 @@ index 0000000..45a5b83
 +
 +#endif
 diff --git a/user_io.cpp b/user_io.cpp
-index 49c6325..493dd07 100644
+index e3981e4..003362e 100644
 --- a/user_io.cpp
 +++ b/user_io.cpp
 @@ -207,10 +207,11 @@ char *user_io_get_core_path(const char *suffix, int recheck)
@@ -314,7 +309,7 @@ index 49c6325..493dd07 100644
  }
  
  static char is_arcade_type = 0;
-@@ -1218,6 +1219,7 @@ void user_io_init(const char *path, const char *xml)
+@@ -1305,6 +1306,7 @@ void user_io_init(const char *path, const char *xml)
  	ibmrs6k_enet_stop();
  	sgi_enet_stop();
  	decalpha_enet_stop();
@@ -322,7 +317,7 @@ index 49c6325..493dd07 100644
  
  	// we need to set the directory to where the XML file (MRA) is
  	// not the RBF. The RBF will be in arcade, which the user shouldn't
-@@ -1314,6 +1316,7 @@ void user_io_init(const char *path, const char *xml)
+@@ -1401,6 +1403,7 @@ void user_io_init(const char *path, const char *xml)
  	is_ibmrs6k();
  	is_sgi_family();
  	is_decalpha();
@@ -330,7 +325,7 @@ index 49c6325..493dd07 100644
  	is_marty();
  	is_pcfx();
  	is_apple3();
-@@ -1404,6 +1407,7 @@ void user_io_init(const char *path, const char *xml)
+@@ -1491,6 +1494,7 @@ void user_io_init(const char *path, const char *xml)
  				if (is_ibmrs6k()) ibmrs6k_enet_start();
  				if (is_sgi_family()) sgi_enet_start();
  				if (is_decalpha()) decalpha_enet_start();

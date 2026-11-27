@@ -1990,6 +1990,10 @@ puts Genera on the LAN at its own address ([WiFi](#wifi), below).
   49, tap0 over WiFi, a scratch copy of the disk): the core starts under
   it by `main=`, Genera answers ping within 43 s of Boot, and its status line
   agrees with the Mac's clock to the second.
+- Nov 26 2026: the commit moved onto Main of Nov 26 (f739cc4, four
+  commits on, none in the bridge's code) without the comment in the poll,
+  as pull request MiSTer-devel/Main_MiSTer#1438; the patch file is that
+  commit and `releases/MiSTer_xl1200` its build.
 
 ### WiFi
 
