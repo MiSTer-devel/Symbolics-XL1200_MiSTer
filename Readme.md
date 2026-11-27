@@ -7,9 +7,9 @@ image and runs Genera 8.3.
 
 ## Features
 
-- A prebuilt disk with Genera 8.3 and its applications (Zmacs, Document
-  Examiner, CLIM, Joshua, Statice, TeX, CL-HTTP and more) and the Genera
-  8.1.1 animation world (S-Paint, S-Geometry, S-Dynamics)
+- Runs Genera 8.3 and its applications (Zmacs, Document Examiner, CLIM,
+  Joshua, Statice, TeX, CL-HTTP and more) and the Genera 8.1.1 animation
+  world (S-Paint, S-Geometry, S-Dynamics)
 - The Ivory processor with its floating-point accelerator and 16 megawords
   (80 MB) of memory, the most an XL1200 took
 - The 1152 × 880 black-and-white console, over HDMI or direct video
@@ -26,8 +26,9 @@ image and runs Genera 8.3.
 ## What you need
 
 - The core and `MiSTer_xl1200` from [releases](releases/)
-- The prebuilt disk, `boot0.vhd.7z` (Genera 8.3 with its applications):
-  search [archive.org](https://archive.org) for its SHA-1,
+- A disk image with Genera on it. The core can run a prebuilt one,
+  `boot0.vhd.7z` (Genera 8.3 with its applications): search
+  [archive.org](https://archive.org) for its SHA-1,
   `53d11962da7163762fda8f6f0d9cd43a23c05a4c`. Or
   [build your own](docs/disk.md)
 - A keyboard and mouse
@@ -46,7 +47,8 @@ image and runs Genera 8.3.
    main=MiSTer_xl1200
    ```
 
-4. Unpack `boot0.vhd` into `games/XL1200/`; the core mounts it by itself.
+4. Put the disk image in `games/XL1200/` as `boot0.vhd`; the core mounts it
+   by itself.
 5. Start XL1200 from the Computer menu.
 6. At the `FEP Command:` prompt type `Hello`, then `Boot`.
 7. When Genera is up, type `Login Lisp-Machine`.
@@ -62,9 +64,9 @@ Before you switch cores or copy the image off the card, type `Halt Machine`
 in Genera. That leaves you at the FEP prompt: `Continue` goes back to
 Genera, `Hello` and `Boot` start it again.
 
-## The prebuilt disk
+## With the prebuilt disk
 
-`Boot` starts Genera 8.3 with its applications:
+On that disk, `Boot` starts Genera 8.3 with its applications:
 [what's there and how to start each one](docs/applications.md).
 
 Two more worlds load at the FEP prompt after `Hello`, in place of `Boot`:
@@ -94,8 +96,8 @@ machines can ping it and move files with FTP, and Genera's Terminal program
 opens telnet sessions on your LAN or beyond it.
 
 You need `MiSTer_xl1200` from [Setup](#setup), a free address on your LAN
-(Genera 8.3 has no DHCP) and your router's address. The prebuilt disk is
-set to 192.168.50.92.
+(Genera 8.3 has no DHCP) and your router's address. The prebuilt disk
+comes set to 192.168.50.92.
 
 1. With a cable in the MiSTer, leave the OSD's Network option at `eth0`. Over
    WiFi, set it to `tap0` and add the [tap setup](docs/NOTES.md#wifi), with
@@ -130,7 +132,7 @@ How it works: [docs/NOTES.md](docs/NOTES.md#network).
 
 ## Gotchas
 
-- **The core writes to the disk image, so keep the `.7z` (or another copy) to start over from.**
+- **The core writes to the disk image, so keep a copy to start over from.**
 - Disk images must be SCSI2SD dumps: each 1280-byte block in 1536 bytes.
 - Disc images must be `.iso`; `.cue`/`.bin` and `.chd` aren't read.
 - With no disk mounted the machine halts; mounting one starts it.
